@@ -68,48 +68,57 @@ void Chain::rotate(int k)
  */
 void Chain::clear()
 {
-    //Any node you create on the heap (using the 'new' statement) should be deleted
-        //TODO: NEW APPROACH AFTER OH
-        //other approach - work off structure of linkedlist. Other cases may get taken care of
-        //else:
-            //for loop - length - then delete the tail
-            //iterate w/ 2 ptrs
-                //1 for access to curr (so can delete after we've moved)
-                //1 for access to next
+    // //Any node you create on the heap (using the 'new' statement) should be deleted
+    //     //TODO: NEW APPROACH AFTER OH
+    //     //other approach - work off structure of linkedlist. Other cases may get taken care of
+    //     //else:
+    //         //for loop - length - then delete the tail
+    //         //iterate w/ 2 ptrs
+    //             //1 for access to curr (so can delete after we've moved)
+    //             //1 for access to next
 
-        if (head_ == NULL) {
-            //do nothing
-        } else if (length_ == 0) {
-            //only need to clear head and tail sentinels
-            //head_->next = NULL; // superfluous
-            //tail_->prev = NULL; // superfluous
-            delete head_;
-            head_ = NULL;
-            delete tail_;
-            tail_ = NULL;
-        } else { //length_ > 0; have at least 1 data node
-            //for loop over length_, then delete the tail
-            //iterate w/ 2 ptrs
-                //1 for access to curr (so can delete after we've moved)
-                //1 for access to next
-            Node* curr;
-            Node* nextPtr;
-            curr = head_;
-            head_ = NULL;
+    //     if (head_ == NULL) {
+    //         //do nothing
+    //     } else if (length_ == 0) {
+    //         //only need to clear head and tail sentinels
+    //         //head_->next = NULL; // superfluous
+    //         //tail_->prev = NULL; // superfluous
+    //         delete head_;
+    //         head_ = NULL;
+    //         delete tail_;
+    //         tail_ = NULL;
+    //     } else { //length_ > 0; have at least 1 data node
+    //         //for loop over length_, then delete the tail
+    //         //iterate w/ 2 ptrs
+    //             //1 for access to curr (so can delete after we've moved)
+    //             //1 for access to next
+    //         Node* curr;
+    //         Node* nextPtr;
+    //         curr = head_;
+    //         head_ = NULL;
 
-            for (int i = 0; i <= length_ ; i++) {
-                nextPtr = curr->next;
-                //curr->next = NULL; //FIxME: optional?
-                //nextPtr->prev = NULL; //FIXME: optional. Dubious - how much do I trust the length?
-                delete curr;
-                curr = nextPtr;
-            }
+    //         for (int i = 0; i <= length_ ; i++) {
+    //             nextPtr = curr->next;
+    //             //curr->next = NULL; //FIxME: optional?
+    //             //nextPtr->prev = NULL; //FIXME: optional. Dubious - how much do I trust the length?
+    //             delete curr;
+    //             curr = nextPtr;
+    //         }
 
-            //FIXME: need to check if curr == tail_? b/c this should always be the case 
-                //if you trust the rest of the surrounding program, don't need to check. If you want to be careful
-            delete tail_; //may want to delete curr. But can also check curr == tail
-            tail_ = NULL;
-        }
+    //         //FIXME: need to check if curr == tail_? b/c this should always be the case 
+    //             //if you trust the rest of the surrounding program, don't need to check. If you want to be careful
+    //         delete tail_; //may want to delete curr. But can also check curr == tail
+    //         tail_ = NULL;
+    //     }
+
+    Node * curr = head_;
+    Node * next;
+
+    while (curr != NULL) {
+        next = curr->next;
+        delete(curr);
+        curr = next;
+    }
 }
 
 
@@ -121,28 +130,25 @@ void Chain::clear()
  */
 void Chain::copy(Chain const &other)
 {
-    // Your code here!
-    //FIXME: 'this' is a ptr to the current obj, correct? 
-        //i.e. *this/(*)this/this-> gives us access to curr obj's member vars?
-    if (other.head_ == NULL || other.tail_ == NULL) {
-        //do nothing. Structure must be broken. 
-    } else {
-        this->head_ = new Node(); //FIXME: same as saying head_ = new Node();?
-        this->tail_ = new Node();
-        this->head_->prev = NULL; //FIXME: redundant, because it's init as NULL?
-        this->tail_->next = NULL; //FIXME: above
-        if (other.head_->next == other.tail_) { // && other.tail_->prev == other.head_ && length_ == 0 //FIXME: added robustness? Can't conceive of a 0-length case in which this isn't true 
-            //implicitly, length = 0
-            this->head_->next = this->tail_;
-            this->tail_->prev = this->head_;
+    // // Your code here!
+    // //FIXME: 'this' is a ptr to the current obj, correct? 
+    //     //i.e. *this/(*)this/this-> gives us access to curr obj's member vars?
+    // if (other.head_ == NULL || other.tail_ == NULL) {
+    //     //do nothing. Structure must be broken. 
+    // } else {
+    //     this->head_ = new Node(); //FIXME: same as saying head_ = new Node();?
+    //     this->tail_ = new Node();
+    //     this->head_->prev = NULL; //FIXME: redundant, because it's init as NULL?
+    //     this->tail_->next = NULL; //FIXME: above
+    //     if (other.head_->next == other.tail_) { // && other.tail_->prev == other.head_ && length_ == 0 //FIXME: added robustness? Can't conceive of a 0-length case in which this isn't true 
+    //         //implicitly, length = 0
+    //         this->head_->next = this->tail_;
+    //         this->tail_->prev = this->head_;
 
-    } else { // length > 0
+    // } else { // length > 0
 
-    }    
-    }
-    
-    
-
+    // }    
+    // }
 }
 
 /***********************************
