@@ -4,6 +4,8 @@
  *
  */
 
+#include "stack.h"
+
 /**
  * Adds the parameter object to the top of the Stack. That is, the element
  * should go at the beginning of the list.
@@ -15,9 +17,7 @@
 template<class T>
 void Stack<T>::push(T const & newItem)
 {
-    /**
-     * @todo Your code here!
-     */
+    myStack.push_front(newItem);
 }
 
 /**
@@ -94,7 +94,5 @@ T Stack<T>::peek()
 template <class T>
 bool Stack<T>::isEmpty() const
 {
-    /**
-     * @todo Your code here! 
-     */
+    return myStack.empty();
 }

@@ -8,7 +8,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <list>
+#include <list> 
 using std::list;
 
 #include "ordering_structure.h"

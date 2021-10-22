@@ -1,0 +1,31 @@
+
+
+ANSWERED ON WEDNESDAY 20/10/2021:
+
+1. std::list -> implemented as a doubly-linked list? 
+   Where are the actual properties of this list i.e. head Node, ptr 2 head Node? 
+   How/where do I interact with these things e.g. to push, pop? There's no constructor
+   What is the relationship b/w (a) Stack/Queue and the interface OrderingStructure?
+
+   A: List built-in fns. Will constrain implementation.
+
+2. How can we test/determine runtime? Just on paper or?
+
+A: Depends on list built-ins. Don't worry tooooo much.
+
+3. Forgot to submit partner's CWL in partners.txt. I have it now: lciappi
+
+Email Kate.
+
+4. Weight on tests that I write myself? Don't worry
+
+5. Stack tests
+   Existing: appear to test that push and pop work
+   Add:
+      - tests for OrderingStructure::add() & OrderingStructure::remove()? Just test push
+      - peek w/o removing
+         - optional: peek -> pop -> peek
+      - isEmpty
+      - edge cases - remove/peek w/ nothing in it. Covered by specification of fns. 
+   Given that it's parametrized type, we can assume that if it works with type A it'll work w/ types B-Z? 
+      No need to test explicitly for this?
