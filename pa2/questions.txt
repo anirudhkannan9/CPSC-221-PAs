@@ -1,4 +1,14 @@
 
+1. OrderingStructure is pure virtual b/c of function declarations ending in '=0'. We can't instantiate
+   an object of type OrderingStructure. So what's the point of implementing the add() and remove() functions
+   that're defined in ordering_structure.h? What are we adding *to* or removing *from*, if an object of type
+   OrderingStructure can't be instantiated? Can we do e.g.
+      OrderingStructure aStack;
+      aStack.add(1);
+      aStack.push(2);?
+
+2. How do I know RT? Stack: just relied on documentation. Queue: 
+
 
 ANSWERED ON WEDNESDAY 20/10/2021:
 

@@ -37,65 +37,65 @@ TEST_CASE("stack::Anirudh's test - basic pop", "[weight=1][part=stack]") {
     REQUIRE(intermediateEmptyFalse == false);
 
     int poppedOne = intStack.pop();
-    REQUIRE(poppedOne == 1);
+    REQUIRE(poppedOne == 1); 
     bool eventuallyEmptyTrue = intStack.isEmpty();
     REQUIRE(eventuallyEmptyTrue == true);
 }
 
-// TEST_CASE("stack::basic functions","[weight=1][part=stack]"){
-//     //cout << "Testing Stack..." << endl;
-//     Stack<int> intStack;
-//     vector<int> result;
-//     vector<int> expected;
+TEST_CASE("stack::basic functions","[weight=1][part=stack]"){
+    cout << "Testing Stack..." << endl;
+    Stack<int> intStack;
+    vector<int> result;
+    vector<int> expected;
 
-//     for (int i = 10; i > 0; i--) {
-//         expected.push_back(i);
-//     }
+    for (int i = 10; i > 0; i--) {
+        expected.push_back(i);
+    }
 
-//     for (int i = 1; i <= 10; i++) {
-//         intStack.push(i);
-//     }
+    for (int i = 1; i <= 10; i++) {
+        intStack.push(i);
+    }
 
-//     //cout << intStack.peek() << endl;
-//     while (!intStack.isEmpty()) {
-//         result.push_back(intStack.pop());
-//         //cout << intStack.pop() << " ";
-//     }
+    // cout << intStack.peek() << endl;
+    while (!intStack.isEmpty()) {
+        result.push_back(intStack.pop());
+        //cout << intStack.pop() << " ";
+    }
 
-//     REQUIRE( result == expected);
-// }
+    REQUIRE( result == expected);
+}
 
 
 
-// TEST_CASE("stack::Anirudh's test -- peek w/o removing", "[weight=1][part=stack]") {
-//     cout << "Testing stack -- Anirudh's test for peek w/o removing..." << endl;
-//     Stack<int> intStack;
+TEST_CASE("stack::Anirudh's test -- peek w/o removing", "[weight=1][part=stack]") {
+    cout << "Testing stack -- Anirudh's test for peek w/o removing..." << endl;
+    Stack<int> intStack;
 
-//     intStack.push(0);
-//     int shouldBeZero = intStack.peek();
-//     bool isEmptyShouldBeFalse = intStack.isEmpty();
-//     REQUIRE(shouldBeZero == 0);
-//     REQUIRE(isEmptyShouldBeFalse == false);
-// }
+    intStack.push(0);
+    int shouldBeZero = intStack.peek();
+    bool isEmptyShouldBeFalse = intStack.isEmpty();
+    REQUIRE(shouldBeZero == 0);
+    REQUIRE(isEmptyShouldBeFalse == false);
+}
 
-// TEST_CASE("stack::Anirudh's test -- peek then pop then peek", "[weight=1][part=stack]") {
-//     cout << "Testing stack -- Anirudh's test for peek then pop then peek..." << endl;
-//     Stack<int> intStack;
 
-//     intStack.push(0);
-//     intStack.push(1);
+TEST_CASE("stack::Anirudh's test -- peek then pop then peek", "[weight=1][part=stack]") {
+    cout << "Testing stack -- Anirudh's test for peek then pop then peek..." << endl;
+    Stack<int> intStack;
 
-//     int shouldBeOnePeeked = intStack.peek();
-//     int shouldBeOnePopped = intStack.pop();
-//     int shouldBeZeroPeeked = intStack.peek();
-//     bool isEmptyShouldBeFalse = intStack.isEmpty();
+    intStack.push(0);
+    intStack.push(1);
 
-//     REQUIRE(shouldBeOnePeeked == 1);
-//     REQUIRE(shouldBeOnePopped == 1);
-//     REQUIRE(shouldBeZeroPeeked = 0);
-//     REQUIRE(isEmptyShouldBeFalse == false);
-// }
+    int shouldBeOnePeeked = intStack.peek();
+    int shouldBeOnePopped = intStack.pop();
+    int shouldBeZeroPeeked = intStack.peek();
+    bool isEmptyShouldBeFalse = intStack.isEmpty();
 
+    REQUIRE(shouldBeOnePeeked == 1);
+    REQUIRE(shouldBeOnePopped == 1);
+    REQUIRE(shouldBeZeroPeeked == 0);
+    REQUIRE(isEmptyShouldBeFalse == false);
+}
 
 // TEST_CASE("queue::basic functions","[weight=1][part=queue]"){
 //     //cout << "Testing Queue..." << endl;

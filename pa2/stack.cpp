@@ -32,9 +32,9 @@ void Stack<T>::push(T const & newItem)
 template <class T>
 T Stack<T>::pop()
 {
-    /**
-     * @todo Your code here! 
-     */
+    T retVal = myStack.front();
+    myStack.pop_front();
+    return retVal;
 }
 
 /**
@@ -49,6 +49,7 @@ void Stack<T>::add(const T& theItem)
      * @todo Your code here! Hint: this should call another Stack function
      *  to add the element to the Stack.
      */
+    push(theItem);
 }
 
 /**
@@ -63,6 +64,7 @@ T Stack<T>::remove()
      * @todo Your code here! Hint: this should call another Stack function
      *  to remove an element from the Stack and return it. 
      */
+    return pop();
 }
 
 /**
@@ -78,9 +80,7 @@ T Stack<T>::remove()
 template <class T>
 T Stack<T>::peek()
 {
-    /**
-     * @todo Your code here! 
-     */
+    return myStack.front();
 }
 
 /**

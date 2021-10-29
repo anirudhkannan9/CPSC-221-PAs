@@ -31,7 +31,7 @@ class OrderingStructure
      * Adds the given element to the ordering structure.
      *
      * @param theItem The item to be added.
-     */
+     */ 
     virtual void add(const T& theItem) = 0;
 
     /**
