@@ -12,9 +12,15 @@
 template <class T>
 void Queue<T>::enqueue(T const& newItem)
 {
-    /**
-     * @todo Your code here!
-     */
+    while (!inStack.isEmpty()) {
+        outStack.push(inStack.pop());
+    }
+
+    inStack.push(newItem);
+
+    while (!outStack.isEmpty()) {
+        inStack.push(outStack.pop());
+    }
 }
 
 /**
@@ -26,10 +32,7 @@ void Queue<T>::enqueue(T const& newItem)
 template <class T>
 T Queue<T>::dequeue()
 {
-    /**
-     * @todo Your code here! 
-     */
-
+    return inStack.pop();
 }
 
 /**
@@ -40,11 +43,7 @@ T Queue<T>::dequeue()
 template <class T>
 void Queue<T>::add(const T& theItem)
 {
-    /**
-     * @todo Your code here! Hint: this function should call a Queue
-     *  function to add the element to the Queue.
-     */
-
+    enqueue(theItem);
 }
 
 /**
@@ -55,10 +54,7 @@ void Queue<T>::add(const T& theItem)
 template <class T>
 T Queue<T>::remove()
 {
-    /**
-     * @todo Your code here! Hint: this function should call a Queue
-     *  function to remove an element from the Queue and return it. 
-     */
+    return dequeue();
 }
 
 /**
@@ -70,9 +66,9 @@ T Queue<T>::remove()
 template <class T>
 T Queue<T>::peek()
 {
-    /**
-     * @todo Your code here! 
-     */
+    T itemAtFront = inStack.pop();
+    inStack.push(itemAtFront); //pushes by reference
+    return itemAtFront; //item should still exist, because we can still refer to it by name 'itemAtFront'
 }
 
 /**
@@ -83,8 +79,5 @@ T Queue<T>::peek()
 template <class T>
 bool Queue<T>::isEmpty() const
 {
-    /**
-     * @todo Your code here! 
-     */
-
+    return inStack.isEmpty() && outStack.isEmpty();
 }

@@ -97,22 +97,46 @@ TEST_CASE("stack::Anirudh's test -- peek then pop then peek", "[weight=1][part=s
     REQUIRE(isEmptyShouldBeFalse == false);
 }
 
-// TEST_CASE("queue::basic functions","[weight=1][part=queue]"){
-//     //cout << "Testing Queue..." << endl;
-//     Queue<int> intQueue;
-//     vector<int> result;
-//     vector<int> expected;
-//     for (int i = 1; i <= 10; i++) {
-//         expected.push_back(i);
-//     }
-//     for (int i = 1; i <= 10; i++) {
-//         intQueue.enqueue(i);
-//     }
-//     //cout << intStack.peek() << endl;
-//     while (!intQueue.isEmpty()) {
-//         result.push_back(intQueue.dequeue());
-//         //cout << intStack.pop() << " ";
-//     }
-//     REQUIRE( result == expected);
-// }
+TEST_CASE("queue::basic functions","[weight=1][part=queue]"){
+    //cout << "Testing Queue..." << endl;
+    Queue<int> intQueue;
+    vector<int> result;
+    vector<int> expected;
+    for (int i = 1; i <= 10; i++) {
+        expected.push_back(i);
+    }
+    for (int i = 1; i <= 10; i++) {
+        intQueue.enqueue(i);
+    }
+    // //cout << intStack.peek() << endl;
+    while (!intQueue.isEmpty()) {
+        result.push_back(intQueue.dequeue());
+        //cout << intStack.pop() << " ";
+    }
+
+    REQUIRE( result == expected);
+}
+
+TEST_CASE("queue::Anirudh's test -- peek when len=1", "[weight=1][part=queue]") {
+    Queue<int> intQueue;
+
+    intQueue.enqueue(1);
+
+    REQUIRE( intQueue.peek() == 1 );
+    REQUIRE( !intQueue.isEmpty() );
+
+    intQueue.dequeue();
+
+    REQUIRE( intQueue.isEmpty() );
+
+}
+
+TEST_CASE("queue::Anirudh's test -- peek when len > 1", "[weight=1][part=queue]") {
+    Queue<int> intQueue;
+
+    intQueue.enqueue(1);
+    intQueue.enqueue(2);
+
+    REQUIRE( intQueue.peek() == 1 );
+}
 
