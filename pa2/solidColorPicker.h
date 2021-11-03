@@ -34,10 +34,7 @@ class solidColorPicker : public colorPicker
     virtual HSLAPixel operator()(int x, int y);
 
   private:
-    /**
-     * @todo Define any additional private member variables or helper
-     *	functions here as you see fit.
-     */
+    HSLAPixel solidColor;
 
 };
 

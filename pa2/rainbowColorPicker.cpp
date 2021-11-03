@@ -12,7 +12,7 @@ HSLAPixel rainbowColorPicker::operator()(int x, int y)
 {
     PNGmap::iterator stored = prev.find(pair<int, int>(x, y));
     if (stored == prev.end()) {
-        HSLAPixel next = nextColor();
+        HSLAPixel next = nextColor(); 
         prev[pair<int, int>(x, y)] = next;
         return next;
     } else
