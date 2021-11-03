@@ -12,15 +12,7 @@
 template <class T>
 void Queue<T>::enqueue(T const& newItem)
 {
-    while (!inStack.isEmpty()) {
-        outStack.push(inStack.pop());
-    }
-
     inStack.push(newItem);
-
-    while (!outStack.isEmpty()) {
-        inStack.push(outStack.pop());
-    }
 }
 
 /**
@@ -32,7 +24,14 @@ void Queue<T>::enqueue(T const& newItem)
 template <class T>
 T Queue<T>::dequeue()
 {
-    return inStack.pop();
+    if (!outStack.isEmpty()) {
+        return outStack.pop();
+    } else {
+        while (!inStack.isEmpty()) {
+            outStack.push(inStack.pop());
+        }
+        return outStack.pop();
+    }
 }
 
 /**
@@ -66,9 +65,14 @@ T Queue<T>::remove()
 template <class T>
 T Queue<T>::peek()
 {
-    T itemAtFront = inStack.pop();
-    inStack.push(itemAtFront); //pushes by reference
-    return itemAtFront; //item should still exist, because we can still refer to it by name 'itemAtFront'
+    if (!outStack.isEmpty()) {
+        return outStack.peek();
+    } else {
+        while (!inStack.isEmpty()) {
+            outStack.push(inStack.pop());
+        }
+        return outStack.peek();
+    }
 }
 
 /**

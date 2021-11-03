@@ -34,7 +34,7 @@ class rainbowColorPicker : public colorPicker
     HSLAPixel nextColor();
 
     typedef std::map<std::pair<int, int>, HSLAPixel> PNGmap;
-    size_t iter;
+    size_t iter; 
     PNGmap prev;
     long double freq;
 };
