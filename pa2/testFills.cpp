@@ -87,32 +87,32 @@ PNG testColorPicker(colorPicker& picker)
 //     result.writeToFile("images/solidColorPickerTest.png");
 //     PNG expected; expected.readFromFile("soln_images/solidColorPickerTest.png");
 //     REQUIRE(result == expected);
-// }
+// } 
 
-TEST_CASE("colorPicker::basic grid","[weight=1][part=colorPicker]"){
-    HSLAPixel px1;
-    px1.h = 120; px1.s = 1.0; px1.l = 0.25;
-    gridColorPicker gridPicker(px1, FUNCTORTESTGRIDSPACING);
+// TEST_CASE("colorPicker::basic grid","[weight=1][part=colorPicker]"){
+//     HSLAPixel px1;
+//     px1.h = 120; px1.s = 1.0; px1.l = 0.25;
+//     gridColorPicker gridPicker(px1, FUNCTORTESTGRIDSPACING);
 
-    PNG result = testColorPicker(gridPicker);
-    result.writeToFile("images/gridColorPickerTest.png");
-    PNG expected; expected.readFromFile("soln_images/gridColorPickerTest.png");
-    REQUIRE(result == expected);
-}
-
-// TEST_CASE("colorPicker::basic gradient","[weight=1][part=colorPicker]"){
-//     HSLAPixel px1, px2;
-//     px1.h = 360.; px1.s = 1.0; px1.l = 0.5; 
-//     px2.h = 240.; px2.s = 1.0; px2.l = 0.5;
-
-//     gradientColorPicker gradientPicker(px1, px2, FUNCTORTESTRADIUS,
-//                                        FUNCTORTESTX, FUNCTORTESTY);
-
-//     PNG result = testColorPicker(gradientPicker);
-//     result.writeToFile("images/gradientColorPickerTest.png");
-//     PNG expected; expected.readFromFile("soln_images/gradientColorPickerTest.png");
+//     PNG result = testColorPicker(gridPicker);
+//     result.writeToFile("images/gridColorPickerTest.png");
+//     PNG expected; expected.readFromFile("soln_images/gridColorPickerTest.png");
 //     REQUIRE(result == expected);
 // }
+
+TEST_CASE("colorPicker::basic gradient","[weight=1][part=colorPicker]"){
+    HSLAPixel px1, px2;
+    px1.h = 360.; px1.s = 1.0; px1.l = 0.5; 
+    px2.h = 240.; px2.s = 1.0; px2.l = 0.5;
+
+    gradientColorPicker gradientPicker(px1, px2, FUNCTORTESTRADIUS,
+                                       FUNCTORTESTX, FUNCTORTESTY);
+
+    PNG result = testColorPicker(gradientPicker);
+    result.writeToFile("images/gradientColorPickerTest.png");
+    PNG expected; expected.readFromFile("soln_images/gradientColorPickerTest.png");
+    REQUIRE(result == expected);
+}
 
 
 

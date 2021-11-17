@@ -14,10 +14,11 @@ gradientColorPicker::gradientColorPicker(HSLAPixel fadeColor1,
                                          HSLAPixel fadeColor2, int radius,
                                          int centerX, int centerY)
 {
-    /**
-     * @todo Construct your gradientColorPicker here! You may find it
-     *	helpful to create additional member variables to store things.
-     */
+    startCol = fadeColor1;
+    endCol = fadeColor2;
+    rad = radius;
+    cX = centerX;
+    cY = centerY;
 }
 
 /**
@@ -34,7 +35,6 @@ gradientColorPicker::gradientColorPicker(HSLAPixel fadeColor1,
  *
  * Then, scale the hue channel from fadeColor1 to
  * fadeColor2 linearly from d = 0 to d = radius.
- * 
  * 
  * The s, and l channels of the color should be 1.0 and 0.5, resp.
  *
@@ -60,9 +60,27 @@ gradientColorPicker::gradientColorPicker(HSLAPixel fadeColor1,
 HSLAPixel gradientColorPicker::operator()(int x, int y)
 {
     HSLAPixel color ;
-    /**
-     * @todo Return the correct color here!
-     */
+
+    //find distance b/w (x, y) and (cX, cY)
+    float dist = abs(cX - x) + abs(cY - y);
+    if (dist >= rad) { //if beyond radius, just return endCol
+        color = endCol;
+    } else if (dist == 0) { //if @ cX, cY: return startCOl
+        color = startCol;
+    } else { // 0 < d < rad, need to scale linearly from d = 0 to d = radius
+        float distBwHues = abs(startCol.h - endCol.h);
+        float newHue;
+        if (distBwHues < 180) {
+            float newDistBwHues = 360 - distBwHues;
+            newHue = startCol.h + (dist/rad) * newDistBwHues;  
+        } else {
+            newHue = startCol.h + (dist/rad) * distBwHues;
+        }
+        color.h = newHue;
+        color.s = 1.0;
+        color.l = 0.5;
+        color.a = 1.0;
+    }
     
     return color;
 }

@@ -1,4 +1,13 @@
 
+WEDS 3/11:
+- Stack/q resize?
+- gridcolor picker params
+- gdb debugger?
+- gridColorPicker test failing; what's hash and why is it being compared? Refer to PNG.cpp's implementation
+  of operator==
+
+
+
 1. OrderingStructure is pure virtual b/c of function declarations ending in '=0'. We can't instantiate
    an object of type OrderingStructure. So what's the point of implementing the add() and remove() functions
    that're defined in ordering_structure.h? What are we adding *to* or removing *from*, if an object of type

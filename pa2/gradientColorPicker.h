@@ -77,6 +77,11 @@ class gradientColorPicker : public colorPicker
      * @todo Add any necessary private storage here! You may also add
      *	private helper functions as you see fit.
      */
+    HSLAPixel startCol;
+    HSLAPixel endCol;
+    int rad;
+    int cX;
+    int cY;
 
 
 };

@@ -30,7 +30,7 @@ class gridColorPicker : public colorPicker
      * otherwise, it will be filled with white.
      *
      * @param x The x coordinate to pick a color for.
-     * @param y The y coordinat to pick a color for.
+     * @param y The y coordinate’ to pick a color for.
      * @return The color chosen for (x, y).
      */
     virtual HSLAPixel operator()(int x, int y);
