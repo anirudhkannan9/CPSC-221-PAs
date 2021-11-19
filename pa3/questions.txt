@@ -1,0 +1,5 @@
+Thursday 18/11:
+1. stats.cpp comment about what stats::stats(PNG & im) is meant to do. 
+'for each color channel, (x, y) is the cumulative sum of the color values from (0, 0) to (x, y)'
+'color channel' = h/s/l/a?
+
