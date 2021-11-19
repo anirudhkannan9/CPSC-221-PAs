@@ -10,13 +10,19 @@
 stats::stats(PNG & im) {
     //there are private vectors: sumHueX, sumHueY, sumSat, sumLum, 
 
-//background:
+//TODO: background:
     //first figure out how hue is translated into cartesian coordinates
+    //  e.g. h = 0° => 0*(π/180) = 0rad. float hueX = std::cos(0) => hueX = 
+    //       h = 50° => 50*(π/180) => 0.872665 rad
+    //       h = 180° => 180*(π/180) = π rad
+    //       h = 243° => 243*(π/180) => 4.24115 rad
+    //       h = 360° => 360*(π/180) => 2π rad
     //then figure out base cases. 
         //A 1x1 (1 pixel) img, with certain HSLA values, write a test to see if this is initialised properly 
         //A 2x2 (4 pixel) img, w/ certain HSLA vals, write a test to see if init properly
 
-//implementation:
+//TODO: implementation:
+    //implement for just e.g. hue first and make sure that's working
 
 }
 
