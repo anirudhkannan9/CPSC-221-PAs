@@ -15,6 +15,9 @@ TEST_CASE("stats::basic stats 1x1", "[weight=1][part=stats]") {
     PNG data(1, 1);
     HSLAPixel* pix = data.getPixel(0, 0);
     pix->h = 0; // presumed defaults: s = 0, l = 1.0, a = 1.0. This config leads to just white. May need to change these 
+    pix->s = 1.0;
+    pix->l = 0.5;
+    //pix->a = 1.0;
 
     data.writeToFile("testimgs/solidColorPickerTest.png");
     stats s(data);
