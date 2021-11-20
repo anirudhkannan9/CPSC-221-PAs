@@ -12,29 +12,30 @@ stats::stats(PNG & im) {
 
 //TODO: background:
     //first figure out how hue is translated into cartesian coordinates
-    //  e.g. h = 0° => 0*(π/180) = 0rad. float hueX = std::cos(0) => hueX = 
-    //       h = 50° => 50*(π/180) => 0.872665 rad
-    //       h = 180° => 180*(π/180) = π rad
-    //       h = 243° => 243*(π/180) => 4.24115 rad
-    //       h = 360° => 360*(π/180) => 2π rad
+    //  e.g. h = 0° => 0*(π/180) = 0rad. float hueX = std::cos(0) => hueX = 1
+    //       h = 50° => 50*(π/180) => 0.872665rad. float hueX = cos(0.872665) = 0.642788
+    //       h = 180° => 180*(π/180) = πrad. float hueX = cos(π) = -1 
+    //       h = 243° => 243*(π/180) => 4.24115 rad. float hueX = cos(4.24115) = -.4453991
+    //       h = 360° => 360*(π/180) => 2π rad. float hueX = cos(2π) = 1
+    // i.e. hueX = cos(PI*pix->h/180) hueY = sin(PI*pix->h/180)
+
     //then figure out base cases. 
         //A 1x1 (1 pixel) img, with certain HSLA values, write a test to see if this is initialised properly 
         //A 2x2 (4 pixel) img, w/ certain HSLA vals, write a test to see if init properly
 
 //TODO: implementation:
     //implement for just e.g. hue first and make sure that's working
+}
+
+long stats::rectArea(pair<int,int> ul, pair<int,int> lr)
+{
+    return 0;
 
 }
 
-long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
-
-/* your code here */
-
-}
-
-HSLAPixel stats::getAvg(pair<int,int> ul, pair<int,int> lr){
-
-/* your code here */
+HSLAPixel stats::getAvg(pair<int,int> ul, pair<int,int> lr)
+{
+    return HSLAPixel();
 
 }
 
@@ -55,5 +56,6 @@ double stats::entropy(pair<int,int> ul, pair<int,int> lr){
                                     * log2((double) distn[i]/(double) area);
     */
     
-    return  -1 * entropy;
+   // return  -1 * entropy; //calc the entropy, and then return the -ve of it
+   return -1.0;
 }

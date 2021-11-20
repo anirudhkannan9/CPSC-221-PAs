@@ -1,5 +1,14 @@
-Thursday 18/11:
+Friday 19/11:
 1. stats.cpp comment about what stats::stats(PNG & im) is meant to do. 
 'for each color channel, (x, y) is the cumulative sum of the color values from (0, 0) to (x, y)'
-'color channel' = h/s/l/a?
+'color channel' = hX/hY/s/l? *Y*
 
+- HSLAPixel.h. line 17: "h is in range [0, 360)", i.e. can be any value from 0 to 359, inclusive. NOT 360.
+    but stats.h says h can be 360? *If it's ≥ 360, wrap around so subtract 360. As a guard - not an assumption*
+
+2. Error re: entropy on make?. Resolved see that line.
+
+3. How to test? I tried make => ./testComp . "No such file or directory." *solved*
+
+4. TEST_CASE "stats::basic stats" => declaring a PNG. Size? Data.resize(1, 1) valid? *solved*
+5. How to make this PNG red? Is this even necessary to test stats?

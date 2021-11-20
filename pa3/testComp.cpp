@@ -11,6 +11,16 @@
 using namespace std;
 using namespace cs221util;
 
+TEST_CASE("stats::basic stats 1x1", "[weight=1][part=stats]") {
+    PNG data(1, 1);
+}
+
+TEST_CASE("stats::basic stats 2x2", "[weigh=1][part=stats]") {
+    PNG data(2, 2);
+    //data.resize(2,2);
+    //access indiv. pixels by doing data.getPixel(x, y) and set directly
+}
+
 TEST_CASE("stats::basic rectArea","[weight=1][part=stats]"){
 
     PNG data; data.resize(2,2);
@@ -63,40 +73,40 @@ TEST_CASE("stats::basic entropy","[weight=1][part=stats]"){
     REQUIRE(result == 2);
 }
 
-TEST_CASE("twoDtree::basic ctor render","[weight=1][part=twoDtree]"){
-    PNG img;
-    img.readFromFile("images/ada.png");
+// TEST_CASE("twoDtree::basic ctor render","[weight=1][part=twoDtree]"){
+//     PNG img;
+//     img.readFromFile("images/ada.png");
 
-    twoDtree t1(img);
+//     twoDtree t1(img);
 
-    PNG out = t1.render();
+//     PNG out = t1.render();
 
-    REQUIRE(out==img);
-}
-TEST_CASE("twoDtree::basic copy","[weight=1][part=twoDtree]"){
-    PNG img;
-    img.readFromFile("images/ada.png");
+//     REQUIRE(out==img);
+// }
+// TEST_CASE("twoDtree::basic copy","[weight=1][part=twoDtree]"){
+//     PNG img;
+//     img.readFromFile("images/ada.png");
 
-    twoDtree t1(img);
-    twoDtree t1copy(t1);
+//     twoDtree t1(img);
+//     twoDtree t1copy(t1);
 
-    PNG out = t1copy.render();
+//     PNG out = t1copy.render();
 
-    REQUIRE(out==img);
-}
+//     REQUIRE(out==img);
+// }
 
-TEST_CASE("twoDtree::basic prune","[weight=1][part=twoDtree]"){
-    PNG img;
-    img.readFromFile("images/color.png");
+// TEST_CASE("twoDtree::basic prune","[weight=1][part=twoDtree]"){
+//     PNG img;
+//     img.readFromFile("images/color.png");
     
-    twoDtree t1(img);
+//     twoDtree t1(img);
 
-    PNG prePrune = t1.render();
+//     PNG prePrune = t1.render();
 
-    t1.prune(.05);
-    PNG result = t1.render();
-    PNG expected; expected.readFromFile("images/given-color.05.png");
+//     t1.prune(.05);
+//     PNG result = t1.render();
+//     PNG expected; expected.readFromFile("images/given-color.05.png");
 
-    REQUIRE(expected==result);
-}
+//     REQUIRE(expected==result);
+// }
 
