@@ -10,6 +10,8 @@
 stats::stats(PNG & im) {
     //there are private vectors: sumHueX, sumHueY, sumSat, sumLum, 
 
+    //TODO: *If h ≥ 360, wrap around so subtract 360. As a guard - not an assumption*
+
 //TODO: background:
     //first figure out how hue is translated into cartesian coordinates
     //  e.g. h = 0° => 0*(π/180) = 0rad. float hueX = std::cos(0) => hueX = 1

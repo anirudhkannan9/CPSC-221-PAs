@@ -30,7 +30,7 @@ namespace cs221util {
   }
 
   PNG::PNG() {
-    width_ = 0;
+    width_ = 0; 
     height_ = 0;
     imageData_ = NULL;
   }

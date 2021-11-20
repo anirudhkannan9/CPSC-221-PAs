@@ -6,9 +6,20 @@ Friday 19/11:
 - HSLAPixel.h. line 17: "h is in range [0, 360)", i.e. can be any value from 0 to 359, inclusive. NOT 360.
     but stats.h says h can be 360? *If it's ≥ 360, wrap around so subtract 360. As a guard - not an assumption*
 
-2. Error re: entropy on make?. Resolved see that line.
+2. Error re: entropy on make?. *Resolved see that line.*
 
 3. How to test? I tried make => ./testComp . "No such file or directory." *solved*
 
 4. TEST_CASE "stats::basic stats" => declaring a PNG. Size? Data.resize(1, 1) valid? *solved*
-5. How to make this PNG red? Is this even necessary to test stats?
+5. How to make this PNG red? Is this even necessary to test stats? *solved see above*
+
+6. testComp.cpp, line 30 "stats s(data)". What does this do -- initializes "stats" obj based on the provided img?
+    Name = "s"? *Y*
+    Type = "stats"? *Y*
+
+7. Weird typing stuff while writing first test 
+    lines 21-24 *fine*
+    lines 28, 32 - vec of vec contains doubles, how to make sure that I'm comparing it against a double?
+        *will tell you if it fails in that specific way (" 0 != 0.0000000000001")*
+
+8. For getting PNGs generated during tests to be displayed visually? - *PA2 generates + saves imgs, can check their tests for syntax*
