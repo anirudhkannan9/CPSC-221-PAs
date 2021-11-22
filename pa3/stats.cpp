@@ -9,7 +9,6 @@
 // This is done to simplify distance and average computation.
 stats::stats(PNG & im) {
     //there are private vectors: sumHueX, sumHueY, sumSat, sumLum, 
-
     //TODO: *If h ≥ 360, wrap around so subtract 360. As a guard - not an assumption*
 
 //TODO: background:
@@ -22,11 +21,18 @@ stats::stats(PNG & im) {
     // i.e. hueX = cos(PI*pix->h/180) hueY = sin(PI*pix->h/180)
 
     //then figure out base cases. 
-        //A 1x1 (1 pixel) img, with certain HSLA values, write a test to see if this is initialised properly 
         //A 2x2 (4 pixel) img, w/ certain HSLA vals, write a test to see if init properly
 
 //TODO: implementation:
     //implement for just e.g. hue first and make sure that's working
+
+    //loop through all pixls in the img
+    //for each pixel
+        //get its hue
+        //convert into hueX & hueY
+        //is it the very first pixel in the rectangle?
+            //Y: just add the values themselves to the right position
+            //N: add curr values + prev cumSum => add the currentCumSum to the right position
 }
 
 long stats::rectArea(pair<int,int> ul, pair<int,int> lr)
