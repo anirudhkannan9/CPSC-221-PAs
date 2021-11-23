@@ -35,51 +35,89 @@ TEST_CASE("stats::basic stats 1x1", "[weight=1][part=stats]") {
     REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
 }
 
-TEST_CASE("stats::basic stats 2x2", "[weigh=1][part=stats]") {
-    PNG data(2, 2);
-
+TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") {
+    PNG data(4, 2);
+    //get the pixels and change their colours
+        //pixels w/ x+y = even are red, x+y = odd are purple
     for (unsigned int x = 0; x < data.width(); x++) {
         for (unsigned int y = 0; y < data.height(); y++) {
-            HSLAPixel* currPix = data.getPixel(x, y);
-            if ((x == y && x == 0) || (x == y && x == 1)) { //red pixels: top L, bottom R. i.e. (0, 0) & (1, 0)
-                currPix->h = 0; // presumed defaults: s = 0, l = 1.0, a = 1.0. This config leads to just white. May need to change these 
-                currPix->s = 1.0;
-                currPix->l = 0.5;
-                currPix->a = 1.0;
-            } else { //blue pixels: top R, bottom L i.e. (0, 1), (1, 0)
-                currPix->h = 270; // presumed defaults: s = 0, l = 1.0, a = 1.0. This config leads to just white. May need to change these 
-                currPix->s = 1.0;
-                currPix->l = 0.5;
-                currPix->a = 1.0;
+            HSLAPixel* pix = data.getPixel(x, y);
+            pix->s = 1.0;
+            pix->l = 0.5;
+            pix->a = 1.0;
+            
+            if ((x + y) % 2 == 0) { //even, color it red
+                pix->h = 0;
+            } else { //odd, colour it purple w h = 270
+                pix->h = 270;
             }
         }
     }
 
-    data.writeToFile("testimgs/basicStats2x2.png");
+    //write to files
+    data.writeToFile("testimgs/basicStats4x2.png");
     stats s(data);
-    
-    vector<int> sizeTwo;
-    sizeTwo.resize(2);
-    size_t TWO = sizeTwo.capacity();
 
-    REQUIRE(s.sumHueX.size() == TWO);
-    REQUIRE(s.sumHueX.at(0).size() == TWO);
-    REQUIRE(s.sumHueX.at(1).size() == TWO);
+    REQUIRE(s.sumHueX.size() == 4);
+    for (unsigned int x = 0; x < data.width(); x++) {
+        REQUIRE(s.sumHueX.at(x).size() == 2);
+        REQUIRE(s.sumHueY.at(x).size() == 2);
+    }
 
-    REQUIRE(s.sumHueX.at(0).at(0) == 1);
-    //REQUIRE(s.sumHueX.at(0).at(1) == 1); // fails b/c -0.000000054 ~= 0 != 1 - so failing to add a 1 @ some point
-    //REQUIRE(s.sumHueX[1][0] == 1); // this one fails b/c 0.99999999946 != 1 lol
-    //REQUIRE(s.sumHueX[1][1] == 2); // this one fails b/c 0.9999999999946 ~= 1 != 2 - fail to add a 1 @ some pt
+    for (unsigned int x = 0; x < data.width(); x++) {
+        for (unsigned int y = 0; y < data.height(); y++) {
 
-    REQUIRE(s.sumHueY.size() == TWO);
-    REQUIRE(s.sumHueY[0].size() == TWO);
-    REQUIRE(s.sumHueY[1].size() == TWO);
+        }
+    }
 
-    // REQUIRE(sumHueY[0][0] == 0);
-    // REQUIRE(sumHueY[0][1] == -1);
-    // REQUIRE(sumHueY[1][0] == -1);
-    // REQUIRE(sumHueY[1][1] == -2); 
+
 }
+
+// TEST_CASE("stats::basic stats 2x2", "[weigh=1][part=stats]") {
+//     PNG data(2, 2);
+
+//     for (unsigned int x = 0; x < data.width(); x++) {
+//         for (unsigned int y = 0; y < data.height(); y++) {
+//             HSLAPixel* currPix = data.getPixel(x, y);
+//             if ((x == y && x == 0) || (x == y && x == 1)) { //red pixels: top L, bottom R. i.e. (0, 0) & (1, 0)
+//                 currPix->h = 0; // presumed defaults: s = 0, l = 1.0, a = 1.0. This config leads to just white. May need to change these 
+//                 currPix->s = 1.0;
+//                 currPix->l = 0.5;
+//                 currPix->a = 1.0;
+//             } else { //blue pixels: top R, bottom L i.e. (0, 1), (1, 0)
+//                 currPix->h = 270; // presumed defaults: s = 0, l = 1.0, a = 1.0. This config leads to just white. May need to change these 
+//                 currPix->s = 1.0;
+//                 currPix->l = 0.5;
+//                 currPix->a = 1.0;
+//             }
+//         }
+//     }
+
+//     data.writeToFile("testimgs/basicStats2x2.png");
+//     stats s(data);
+    
+//     vector<int> sizeTwo;
+//     sizeTwo.resize(2);
+//     size_t TWO = sizeTwo.capacity();
+
+//     REQUIRE(s.sumHueX.size() == TWO);
+//     REQUIRE(s.sumHueX.at(0).size() == TWO);
+//     REQUIRE(s.sumHueX.at(1).size() == TWO);
+
+//     REQUIRE(s.sumHueX.at(0).at(0) == 1);
+//     //REQUIRE(s.sumHueX.at(0).at(1) == 1); // fails b/c -0.000000054 ~= 0 != 1 - so failing to add a 1 @ some point
+//     //REQUIRE(s.sumHueX[1][0] == 1); // this one fails b/c 0.99999999946 != 1 lol
+//     //REQUIRE(s.sumHueX[1][1] == 2); // this one fails b/c 0.9999999999946 ~= 1 != 2 - fail to add a 1 @ some pt
+
+//     REQUIRE(s.sumHueY.size() == TWO);
+//     REQUIRE(s.sumHueY[0].size() == TWO);
+//     REQUIRE(s.sumHueY[1].size() == TWO);
+
+//     // REQUIRE(sumHueY[0][0] == 0);
+//     // REQUIRE(sumHueY[0][1] == -1);
+//     // REQUIRE(sumHueY[1][0] == -1);
+//     // REQUIRE(sumHueY[1][1] == -2); 
+// }
 
 // TEST_CASE("stats::basic rectArea","[weight=1][part=stats]"){
 
