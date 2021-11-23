@@ -66,6 +66,17 @@ TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") {
 
     for (unsigned int x = 0; x < data.width(); x++) {
         for (unsigned int y = 0; y < data.height(); y++) {
+            //test top L corner
+            if (x == 0 && y == 0) {
+                REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
+                REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
+            }
+
+            //test top row
+
+            //test leftmost column
+
+            //others
 
         }
     }
