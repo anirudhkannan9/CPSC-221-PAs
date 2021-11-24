@@ -80,8 +80,17 @@ TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") {
 
         }
     }
+}
 
-
+TEST_CASE("stats::basic stats 2x4", "[weight=1][part=stats]") {
+    PNG data (2, 4);
+    //get the pixls and change their colours
+        //pixels w/ x+y = even are red, x+y odd are purple
+        for (unsigned int x = 0; x < data.width(); x++) {
+            for (unsigned int y = 0; y < data.height(); y++) {
+                HSLAPixel* pix = data.getPixel(x, y);
+            }
+        }
 }
 
 // TEST_CASE("stats::basic stats 2x2", "[weigh=1][part=stats]") {
