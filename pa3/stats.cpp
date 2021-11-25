@@ -50,7 +50,10 @@ stats::stats(PNG & im) {
             } else if (x == 0) { //leftmost column, only count from above
                 sumHueX.at(x).at(y) = hueX + sumHueX.at(x).at(y-1);
                 sumHueY.at(x).at(y) = hueY + sumHueY.at(x).at(y-1);
-
+            } else { // "internal", make sure there's no double counting
+                //directly above
+                //directly to left
+                //add them up
 
 
             }
