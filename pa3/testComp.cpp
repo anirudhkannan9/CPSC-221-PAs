@@ -35,7 +35,7 @@ using namespace cs221util;
 //     REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
 // }
 
-TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") { //TODO: top row (sumHueX, sumHueY), left column (sumHueX, sumHueY), other (sumHueX, sumHueY), non-hue
+TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") { //TODO: left column (sumHueX, sumHueY), other (sumHueX, sumHueY), non-hue
     PNG data(4, 2);
     //get the pixels and change their colours
         //pixels w/ x+y = even are red, x+y = odd are purple
@@ -73,14 +73,14 @@ TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") { //TODO: top row 
                 REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
             } else if (y == 0) { //test top row
                 REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
-                REQUIRE(s.sumHueX.at(1).at(0) == 1.0);
-                // REQUIRE(s.sumHueX.at(2).at(0) == 2.0);
-                // REQUIRE(s.sumHueX.at(3).at(0) == 2.0);
+                REQUIRE((1.0 - s.sumHueX.at(1).at(0)) <= 0.01); // because otherwise tests fails: 0.9999999946 != 1.0
+                REQUIRE(2.0 - s.sumHueX.at(2).at(0) <= 0.01);
+                REQUIRE(2.0 - s.sumHueX.at(3).at(0) <= 0.01);
 
-                // REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
-                // REQUIRE(s.sumHueY.at(1).at(0) == -1.0);
-                // REQUIRE(s.sumHueY.at(2).at(0) == );
-                // REQUIRE(s.sumHueY.at(3).at(0) == );
+                REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
+                REQUIRE(s.sumHueY.at(1).at(0) == -1.0);
+                REQUIRE(s.sumHueY.at(2).at(0) == -1.0);
+                REQUIRE(s.sumHueY.at(3).at(0) == -2.0);
             } else if (x == 0) { //test leftmost column
 
             } else { //test that we don't double count

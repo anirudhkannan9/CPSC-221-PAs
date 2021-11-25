@@ -46,6 +46,7 @@ stats::stats(PNG & im) {
                 sumHueY.at(0).at(0) = hueY;
             } else if (y == 0) { //top row, only count from the left
                 sumHueX.at(x).at(y) = hueX + sumHueX.at(x-1).at(y);
+                sumHueY.at(x).at(y) = hueY + sumHueY.at(x-1).at(y);
             }
         }
     }
