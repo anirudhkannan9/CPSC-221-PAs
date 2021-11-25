@@ -44,10 +44,9 @@ stats::stats(PNG & im) {
             if (x == 0 && y == 0) { //it's the very first pixl (top L): (0, 0)
                 sumHueX.at(0).at(0) = hueX;
                 sumHueY.at(0).at(0) = hueY;
+            } else if (y == 0) { //top row, only count from the left
+                sumHueX.at(x).at(y) = hueX + sumHueX.at(x-1).at(y);
             }
-            // } else if () { //it's in the top row i.e. y = 0
-
-            // }
         }
     }
 }
