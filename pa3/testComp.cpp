@@ -35,101 +35,106 @@ using namespace cs221util;
 //     REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
 // }
 
-TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") { //TODO: left column (sumHueX, sumHueY), other (sumHueX, sumHueY), non-hue
-    PNG data(4, 2);
-    //get the pixels and change their colours
-        //pixels w/ x+y = even are red, x+y = odd are purple
-    for (unsigned int x = 0; x < data.width(); x++) {
-        for (unsigned int y = 0; y < data.height(); y++) {
-            HSLAPixel* pix = data.getPixel(x, y);
-            pix->s = 1.0;
-            pix->l = 0.5;
-            pix->a = 1.0;
+// TEST_CASE("stats::basic stats 4x2", "[weight=1][part=stats]") { //TODO: left column (sumHueX, sumHueY), other (sumHueX, sumHueY), non-hue
+//     PNG data(4, 2);
+//     //get the pixels and change their colours
+//         //pixels w/ x+y = even are red, x+y = odd are purple
+//     for (unsigned int x = 0; x < data.width(); x++) {
+//         for (unsigned int y = 0; y < data.height(); y++) {
+//             HSLAPixel* pix = data.getPixel(x, y);
+//             pix->s = 1.0;
+//             pix->l = 0.5;
+//             pix->a = 1.0;
             
-            if ((x + y) % 2 == 0) { //even, color it red
-                pix->h = 0;
-            } else { //odd, colour it purple w h = 270
-                pix->h = 270;
-            }
-        }
-    }
-
-    //write to files
-    data.writeToFile("testimgs/basicStats4x2.png");
-    stats s(data);
-
-    REQUIRE(s.sumHueX.size() == 4);
-    REQUIRE(s.sumHueY.size() == 4);
-    for (unsigned int x = 0; x < data.width(); x++) {
-        REQUIRE(s.sumHueX.at(x).size() == 2);
-        REQUIRE(s.sumHueY.at(x).size() == 2);
-    }
-
-    for (unsigned int x = 0; x < data.width(); x++) {
-        for (unsigned int y = 0; y < data.height(); y++) {
-            //test top L corner
-            if (x == 0 && y == 0) {
-                REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
-                REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
-            } else if (y == 0) { //test top row
-                REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
-                REQUIRE((1.0 - s.sumHueX.at(1).at(0)) <= 0.01); // because otherwise tests fails: 0.9999999946 != 1.0
-                REQUIRE(2.0 - s.sumHueX.at(2).at(0) <= 0.01);
-                REQUIRE(2.0 - s.sumHueX.at(3).at(0) <= 0.01);
-
-                REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
-                REQUIRE(s.sumHueY.at(1).at(0) == -1.0);
-                REQUIRE(s.sumHueY.at(2).at(0) == -1.0);
-                REQUIRE(s.sumHueY.at(3).at(0) == -2.0);
-            } else if (x == 0) { //test leftmost column
-
-            } else { //test that we don't double count
-
-            }
-        }
-    }
-}
-
-// TEST_CASE("stats::basic stats 2x4", "[weight=1][part=stats]") { //TODO: top row (sumHueX, sumHueY), left column (sumHueX, sumHueY), other (sumHueX, sumHueY), non-hue
-//     PNG data (2, 4);
-//     //get the pixls and change their colours
-//         //pixels w/ x+y = even are red, x+y odd are purple
-//         for (unsigned int x = 0; x < data.width(); x++) {
-//             for (unsigned int y = 0; y < data.height(); y++) {
-//                 HSLAPixel* pix = data.getPixel(x, y);
-//                 pix->s = 1.0;
-//                 pix->l = 0.5;
-//                 pix->a = 1.0;
-
-//                 if ((x + y) % 2 == 0) { //even, color it red h = 0;
-//                     pix->h = 0;
-//                 } else { //odd, colour it purple h = 270
-//                     pix->h = 270;
-//                 }
+//             if ((x + y) % 2 == 0) { //even, color it red
+//                 pix->h = 0;
+//             } else { //odd, colour it purple w h = 270
+//                 pix->h = 270;
 //             }
 //         }
+//     }
 
 //     //write to files
-//     data.writeToFile("testimgs/basicStats2x4.png");
+//     data.writeToFile("testimgs/basicStats4x2.png");
 //     stats s(data);
 
-//     REQUIRE(s.sumHueX.size() == 2);
-//     REQUIRE(s.sumHueY.size() == 2);
+//     REQUIRE(s.sumHueX.size() == 4);
+//     REQUIRE(s.sumHueY.size() == 4);
 //     for (unsigned int x = 0; x < data.width(); x++) {
-//             REQUIRE(s.sumHueX.at(x).size() == 4);
-//             REQUIRE(s.sumHueY.at(x).size() == 4);
+//         REQUIRE(s.sumHueX.at(x).size() == 2);
+//         REQUIRE(s.sumHueY.at(x).size() == 2);
 //     }
 
 //     for (unsigned int x = 0; x < data.width(); x++) {
 //         for (unsigned int y = 0; y < data.height(); y++) {
-//             if (x == 0 && y == 0) { //top L corner
-//                 REQUIRE(s.sumHueX.at(x).at(y) == 1.0);
-//                 REQUIRE(s.sumHueY.at(x).at(y) == 0.0);
+//             //test top L corner
+//             if (x == 0 && y == 0) {
+//                 REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
+//                 REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
+//             } else if (y == 0) { //test top row
+//                 REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
+//                 REQUIRE((1.0 - s.sumHueX.at(1).at(0)) <= 0.01); // because otherwise tests fails: 0.9999999946 != 1.0
+//                 REQUIRE(2.0 - s.sumHueX.at(2).at(0) <= 0.01);
+//                 REQUIRE(2.0 - s.sumHueX.at(3).at(0) <= 0.01);
+
+//                 REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
+//                 REQUIRE(s.sumHueY.at(1).at(0) == -1.0);
+//                 REQUIRE(s.sumHueY.at(2).at(0) == -1.0);
+//                 REQUIRE(s.sumHueY.at(3).at(0) == -2.0);
+//             } else if (x == 0) { //test leftmost column
+
+//             } else { //test that we don't double count
 
 //             }
 //         }
 //     }
 // }
+
+TEST_CASE("stats::basic stats 2x4", "[weight=1][part=stats]") { //TODO: left column (sumHueX, sumHueY), other (sumHueX, sumHueY), non-hue
+    PNG data (2, 4);
+    //get the pixls and change their colours
+        //pixels w/ x+y = even are red, x+y odd are purple
+        for (unsigned int x = 0; x < data.width(); x++) {
+            for (unsigned int y = 0; y < data.height(); y++) {
+                HSLAPixel* pix = data.getPixel(x, y);
+                pix->s = 1.0;
+                pix->l = 0.5;
+                pix->a = 1.0;
+
+                if ((x + y) % 2 == 0) { //even, color it red h = 0;
+                    pix->h = 0;
+                } else { //odd, colour it purple h = 270
+                    pix->h = 270;
+                }
+            }
+        }
+
+    //write to files
+    data.writeToFile("testimgs/basicStats2x4.png");
+    stats s(data);
+
+    REQUIRE(s.sumHueX.size() == 2);
+    REQUIRE(s.sumHueY.size() == 2);
+    for (unsigned int x = 0; x < data.width(); x++) {
+            REQUIRE(s.sumHueX.at(x).size() == 4);
+            REQUIRE(s.sumHueY.at(x).size() == 4);
+    }
+
+    for (unsigned int x = 0; x < data.width(); x++) {
+        for (unsigned int y = 0; y < data.height(); y++) {
+            if (x == 0 && y == 0) { //top L corner
+                REQUIRE(s.sumHueX.at(x).at(y) == 1.0);
+                REQUIRE(s.sumHueY.at(x).at(y) == 0.0);
+            } else if (y == 0) { //top row
+                REQUIRE(s.sumHueX.at(0).at(0) == 1.0);
+                REQUIRE(1.0 - s.sumHueX.at(1).at(0) <= 0.01);
+
+                REQUIRE(s.sumHueY.at(0).at(0) == 0.0);
+                REQUIRE(s.sumHueY.at(1).at(0) == -1.0);
+            }
+        }
+    }
+}
 
 // TEST_CASE("stats::basic stats 2x2", "[weigh=1][part=stats]") {
 //     PNG data(2, 2);
