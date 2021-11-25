@@ -47,6 +47,12 @@ stats::stats(PNG & im) {
             } else if (y == 0) { //top row, only count from the left
                 sumHueX.at(x).at(y) = hueX + sumHueX.at(x-1).at(y);
                 sumHueY.at(x).at(y) = hueY + sumHueY.at(x-1).at(y);
+            } else if (x == 0) { //leftmost column, only count from above
+                sumHueX.at(x).at(y) = hueX + sumHueX.at(x).at(y-1);
+                sumHueY.at(x).at(y) = hueY + sumHueY.at(x).at(y-1);
+
+
+
             }
         }
     }
